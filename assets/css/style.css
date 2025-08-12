@@ -24,6 +24,9 @@ body {
     justify-content: space-around;
     margin: 0 5rem;
     transition: all ease 250ms;
+    border: 3px solid black;
+    background-color: beige;
+    padding: 2rem;
 }
 
 .cards-container img:hover {
@@ -32,6 +35,8 @@ body {
     transform: scale(1.1);
 }
 
-.main-container .container-button {
-    
+.contianer-button-label img:hover {
+    transition: all ease-in-out 250ms;
+    transform: rotate(6deg) scale(1.3);
+    cursor: pointer;
 }
