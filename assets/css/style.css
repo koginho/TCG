@@ -1,3 +1,10 @@
+:root {
+    --background-color: #E7E7FB;
+    --white-color: #fff;
+    --black-color: #000;
+    --shadow-color: #00000034;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -7,13 +14,16 @@
 body {
     font-size: 62.5%;
     font-family: 'Nunito Sans', system-ui;
-    background-image: url(../img/grass_14.png);
-    background-size: cover;
+    background: var(--background-color);
+}
+
+p {
+    font-size: 1.3rem;
 }
 
 .main-container {
     text-align: center;
-    margin: 4rem auto;
+    margin: 0.5rem auto;
     padding: 0.5rem 1rem;
 }
 
@@ -26,15 +36,23 @@ body {
     justify-content: space-around;
     margin: 0 5rem;
     transition: all ease 250ms;
-    border: 3px solid black;
-    background-color: beige;
-    padding: 2rem;
+    border-radius: 0.5rem;
+    background-color: var(--white-color);
+    padding: 1.5rem 0.1rem;
+    box-shadow: 0 0 10px 5px var(--shadow-color);
+    margin-bottom: 5rem;
 }
 
 .cards-container img:hover {
     transition: all ease-in-out 250ms;
-    
     transform: scale(1.1);
+}
+
+.cards-container .card-placeholder {
+    background-color: cadetblue;
+    border-radius: 0.5rem;
+    width: 12rem;
+    height: 17rem;
 }
 
 .contianer-button-label img:hover {
@@ -45,4 +63,10 @@ body {
 
 .container-button {
     display: none;
+}
+
+.footer {
+    width: 100%;
+    bottom: 0;
+    text-align: center;
 }
