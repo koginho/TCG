@@ -1,31 +1,46 @@
 const api_key = "7ddc0ca5-b2e5-4c38-a723-ae4dbc85e762"
 
-const randomGenerator = Math.floor(Math.random() * 20) + 1;
+const randomGenerator = Math.floor(Math.random() * 100) + 1;
 
-const api_url = `https://api.pokemontcg.io/v2/cards?page=${randomGenerator}&pageSize=15`
+const api_url = `https://api.pokemontcg.io/v2/cards?page=${randomGenerator}&pageSize=100`
 
-let cards = [];
+let cardsArray = [];
 
-const embaralharCards = cards => {
-    for (let i = cards.length - 1; i > 0; i--) {
+// Tentativa de consumir API assim q a pagina carrega, volta um array vazio.
+/*  document.addEventListener("DOMContentLoaded", function() {
+    console.log('DOM sendo carregada...')
+    fetch(api_url, {
+        headers: {"X-Api-Key": api_key}
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(cardsArray);
+        })
+        .catch(error => {
+            console.error("Deu ruim aqui:", error);
+        })
+})   */
+
+const embaralharCards = cardsArray => {
+    for (let i = cardsArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        const temp = cards[i]; // [cartas[i], cartas[j]] = [cartas[j]. cartas[i]]
-        cards[i] = cards[j];
-        cards[j] = temp
+        const temp = cardsArray[i]; // [cardsArray[i], cardsArray[j]] = [cardsArray[j]. cardsArray[i]]
+        cardsArray[i] = cardsArray[j];
+        cardsArray[j] = temp
     }
 }
 
 const abrirBooster = () => {
-    if (cards.length < 5 ) {
+    if (cardsArray.length < 5 ) {
         alert("Não existem cartas suficientes para abrir um pacote.")
         return;
     }
 
-    embaralharCards(cartas);
+    embaralharCards(cardsArray);
 
-    const booster = cartas.splice(0, 5);
+    const booster = cardsArray.splice(0, 5);
     console.log("Booster aberto", booster)  
-    console.log(`Restam ${cartas.length} cartas pokemon`)
+    console.log(`Restam ${cardsArray.length} cartas pokemon`)
 
     const cardsImg = document.getElementById("cardsContainer")
     if (cardsImg) {
@@ -46,14 +61,12 @@ document.getElementById("containerButton").addEventListener("click", () => {
     })
         .then(res => res.json())
         .then(data => {
-            cards = data.data
-            console.log(`Cartas carregadas: ${cards.length}`);
+            cardsArray = data.data
+            console.log(`Cartas carregadas: ${cardsArray.length}`);
             abrirBooster()
         })
         .catch(err => console.error("Erro na requisição.", err))
 })
-
-
 
 /* document.getElementById("containerButton").addEventListener("click", () => {
 
@@ -74,3 +87,4 @@ document.getElementById("containerButton").addEventListener("click", () => {
         })
         .catch(err => console.error("Erro na busca.", err));
 }) */
+
